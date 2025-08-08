@@ -1,6 +1,7 @@
 import { Button } from "@/components/ui/button";
 import { Search, Menu, User, Bell } from "lucide-react";
 import { Link } from "react-router-dom";
+import { Sheet, SheetTrigger, SheetContent, SheetHeader, SheetTitle } from "@/components/ui/sheet";
 
 const Header = () => {
   return (
@@ -59,9 +60,24 @@ const Header = () => {
           </Button>
 
           {/* Mobile menu */}
-          <Button variant="ghost" size="icon" className="md:hidden">
-            <Menu className="h-4 w-4" />
-          </Button>
+          <Sheet>
+            <SheetTrigger asChild>
+              <Button variant="ghost" size="icon" className="md:hidden" aria-label="Open menu">
+                <Menu className="h-4 w-4" />
+              </Button>
+            </SheetTrigger>
+            <SheetContent side="right">
+              <SheetHeader>
+                <SheetTitle>Menu</SheetTitle>
+              </SheetHeader>
+              <nav className="mt-6 space-y-3">
+                <Link to="/" className="block text-foreground hover:text-primary transition-colors">Find Jobs</Link>
+                <Link to="/post-job" className="block text-foreground hover:text-primary transition-colors">Post a Job</Link>
+                <Link to="/signin" className="block text-foreground hover:text-primary transition-colors">Sign In</Link>
+                <Link to="/register" className="block text-foreground hover:text-primary transition-colors">Sign Up</Link>
+              </nav>
+            </SheetContent>
+          </Sheet>
         </div>
       </div>
     </header>
